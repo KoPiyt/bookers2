@@ -1,0 +1,35 @@
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <h3>name:<%= @user.name %></h3>
+  <h3>introduction:<%= @user.introduction %></h3>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+</div>
+
+<h1>New book</h1>
+<%= form_with model: Book.new do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+<h1>Book detail</h1>
+<div>
+  <%= link_to user_path(@book.user) do %>
+      <p></p><%= image_tag @book.user.get_profile_image(100,100) %>
+        <p>ユーザーネーム：<%= @book.user.name %></p>
+      <% end %>
+       <%= link_to book_path(@book.id) do %>
+      <p>title:</p><%= @book.title %>
+       <% end %>
+  <p>タイトル：<%= @book.title %></p>
+  <p>説明：<%= @book.body %></p>
+  <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image(100,100) %></p>
+  <p>ユーザーネーム：<%= @book.user.name %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %><br>
+    <%= link_to "Edit", edit_book_path(@book) %>
+  <% end %>
+</div>
+
