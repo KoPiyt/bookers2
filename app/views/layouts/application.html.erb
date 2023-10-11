@@ -28,7 +28,7 @@
     <% if user_signed_in? %>
       <li class="nav-item">
         <%= link_to user_path(current_user.id),class: 'nav-link text-light' do %>
-        <p><i class="fa-solid fa-house"></i>Home</p>
+        <p><i class="fa-solid fa-home"></i>Home</p>
         <% end %>
       </li>
       
@@ -44,7 +44,7 @@
       </li>
       <li class="nav-item">
         <%= link_to destroy_user_session_path,method: :delete,class: 'nav-link text-light' do %>
-        <p><i class="fa-solid fa-right-to-bracket"></i>Log out</p>
+        <p><i class="fa-solid fa-sign-out-alt"></i>Log out</p>
         <% end %>
       </li>
 
@@ -52,7 +52,7 @@
     
       <li class="nav-item">
         <%= link_to "/",class: 'nav-link text-light' do %>
-        <p><i class="fa-solid fa-house"></i>Home</p>
+        <p><i class="fa-solid fa-home"></i>Home</p>
         <% end %>
       </li>
       
@@ -64,12 +64,12 @@
       
       <li class="nav-item">
         <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-        <p><i class="fa-solid fa-user"></i>Sign up</p>
+        <p><i class="fa-solid fa-user-plus"></i>Sign up</p>
         <% end %>
       </li>
       <li>
         <%= link_to new_user_session_path,class: 'nav-link text-light' do %>
-        <p><i class="fa-solid fa-right-to-bracket"></i>Log in</p>
+        <p><i class="fa-solid fa-sign-in-alt"></i>Log in</p>
         <% end %>
       </li>
     <% end %>
@@ -79,18 +79,22 @@
     </div>
   </nav>
   
+  
   <main>
     <% flash.each do |message_type, message| %>
       <div class="flash-message <%= message_type %>"><%= message %></div>
-    <% end %>    
+    <% end %>   
+    
     <%= yield %>
+    
+    
   </main>
     
     
  <footer class=" text-dark pt-5 pb-4">
       <div class="container">
         <div class="row no-gutters">
-          <div class="mx-auto">
+          <div class="col text-center">
             <p>CopyRight Infratop.inc</p>
           </div>
         </div>
@@ -98,3 +102,4 @@
     </footer>
   </body>
 </html>
+
