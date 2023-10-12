@@ -1,12 +1,16 @@
 class Book < ApplicationRecord
       belongs_to :user
         has_one_attached :image
+      has_many :book_comments,dependent: :destroy
+      has_many :favorites,dependent: :destroy
         
         validates :title, presence: true
         #validates :body, presence: true
         validates :body,    length: { in: 1..200 }        # 「1文字以上200文字以下」
 
-        
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
  def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
